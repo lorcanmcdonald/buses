@@ -1,0 +1,4 @@
+futures
+requests-futures
+RPi.GPIO
+urllib3[secure]
