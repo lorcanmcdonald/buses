@@ -5,6 +5,7 @@ import time
 import datetime
 import signal
 import sys
+import requests
 
 print "Starting buses"
 
@@ -32,7 +33,10 @@ def get_next_due(stops):
 		bus_stop_future = session.get(endpoint, verify=False)
 		stop_results[stop_id] = bus_stop_future
 		
-	stop_data = { stop_id: r.result().json() for stop_id, r in stop_results.items() }
+	try:
+		stop_data = { stop_id: r.result().json() for stop_id, r in stop_results.items() }
+	except requests.exceptions.ConnectionError:
+		stop_data = {}
 
 	output = {}
 
@@ -62,7 +66,8 @@ def get_next_due(stops):
 		elif not stop_id in result:
 			result[stop_id] = due
 
-	result = { s: "flashing" if (int(d) < 6 and s == "510")  else "on" for s, d in result.items() }
+
+	result = { s: "flashing" if (int(d) < 8 and int(d) > 4 and s == "510")  else "on" for s, d in result.items() }
 
 	default_result = {
 		"510": "off",
@@ -92,6 +97,7 @@ while True:
 	if (now - last_checked).total_seconds() > 0.00010:
 		stop_details = get_next_due(stops)
 		last_checked = now
+
 	for p in range(0, len(pins)):
 		stop = stops[p]
 	
