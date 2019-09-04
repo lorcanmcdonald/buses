@@ -1,4 +1,4 @@
-FROM hypriot/rpi-python
+FROM balenalib/raspberry-pi-debian-python
 RUN apt-get update
 RUN apt-get -y install build-essential libffi-dev libssl-dev
 ENV PYTHONUNBUFFERED=0
