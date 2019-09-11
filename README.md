@@ -9,7 +9,7 @@ mornings. So I built a live map showing buses that were approaching my local
 bus stop.
 
 ![Photo of picture frame with a light showing the location of a bus, hung on the wall
-in a hallway](https://raw.githubusercontent.com/lorcanmcdonald/buses/master/images/FrontDoor.jpg | width=1024)
+in a hallway](https://raw.githubusercontent.com/lorcanmcdonald/buses/master/images/FrontDoor.jpg)
 
 This project was inspired by the [People in Space
 Indicator](https://projects.raspberrypi.org/en/projects/people-in-space-indicator),
